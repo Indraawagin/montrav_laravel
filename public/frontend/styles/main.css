@@ -484,8 +484,8 @@ header .btn-get-started:hover {
 
 @media (min-width: 992px) {
     .login-container {
-        background: -webkit-gradient(linear, left top, right top, color-stop(60%, #ffff), color-stop(40%, #E6E7E7));
-        background: linear-gradient(90deg, #ffff 60%, #E6E7E7 40%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(60%, #ffff), color-stop(40%, #e6e7e7));
+        background: linear-gradient(90deg, #ffff 60%, #e6e7e7 40%);
         width: 100vw;
         height: 100vh;
     }
@@ -506,7 +506,7 @@ header .btn-get-started:hover {
 }
 
 .login-container .section-left {
-    margin-left: -2rem;
+    margin-left: -2.6rem;
 }
 
 .login-container .section-left h1 {
@@ -519,10 +519,7 @@ header .btn-get-started:hover {
 
 .login-container .section-right a {
     font-family: Assistant;
-    font-weight: 600;
     text-decoration: underline;
-    font-size: 15px;
-    text-align: left;
     color: #d4d4d4;
 }
 

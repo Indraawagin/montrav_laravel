@@ -263,7 +263,6 @@ header {
     }
 }
 
-
 // Header & Main Details
 // Header
 .section-details-header {
@@ -461,7 +460,6 @@ header {
     }
 }
 
-
 .member {
     .member-img {
         width: 40px;
@@ -526,7 +524,7 @@ header {
 // Login
 .login-container {
     @media (min-width: 992px) {
-        background: linear-gradient(90deg, #ffff 60%, #E6E7E7 40%);
+        background: linear-gradient(90deg, #ffff 60%, #e6e7e7 40%);
         width: 100vw;
         height: 100vh;
     }
@@ -554,17 +552,13 @@ header {
             font-size: 50px;
             text-align: left;
             color: #02113b;
-
         }
     }
 
     .section-right {
         a {
             font-family: Assistant;
-            font-weight: 600;
             text-decoration: underline;
-            font-size: 15px;
-            text-align: left;
             color: #d4d4d4;
         }
     }
