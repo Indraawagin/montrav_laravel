@@ -27,67 +27,49 @@ Detail Travel
             <div class="row">
                 <div class="col-lg-8 pl-lg-0">
                     <div class="card card-details">
-                        <h1>Nusa Penida</h1>
-                        <p>Republik of Indonesia Raya</p>
+                        <h1 id="title">{{ $item->title }}</h1>
+                        <p>{{ $item->location }}</p>
+                        @if ($item->galleries->count())
                         <div class="gallery">
                             <div class="xzoom-container">
-                                <img src="{{ url('frontend/images/gallery_1.jpg') }}" alt="" class="xzoom"
-                                    id="xzoom-default" xoriginal="{{ url('frontend/images/gallery_1.jpg') }}" />
+                                <img src="{{ Storage::url($item->galleries->first()->image) }}" alt="" class="xzoom"
+                                    id="xzoom-default"
+                                    xoriginal="{{ Storage::url($item->galleries->first()->image) }}" />
                             </div>
                             <div class="xzoom-thumbs">
-                                <a href="{{ url('frontend/images/gallery_1.jpg') }} ">
-                                    <img src="{{ url('frontend/images/gallery_1.jpg') }}" class="xzoom-gallery"
-                                        xpreview="{{ url('frontend/images/gallery_1.jpg') }}" alt="" /></a>
-                                <a href="{{ url('frontend/images/child_2.jpg') }} ">
-                                    <img src="{{ url('frontend/images/child_2.jpg') }}" class="xzoom-gallery"
-                                        xpreview="{{ url('frontend/images/child_2.jpg') }}" alt="" /></a>
-                                <a href="{{ url('frontend/images/child_3.jpg') }} ">
-                                    <img src="{{ url('frontend/images/child_3.jpg') }}" class="xzoom-gallery"
-                                        xpreview="{{ url('frontend/images/child_3.jpg') }}" alt="" /></a>
-                                <a href="{{ url('frontend/images/child_4.jpg') }} ">
-                                    <img src="{{ url('frontend/images/child_4.jpg') }}" class="xzoom-gallery"
-                                        xpreview="{{ url('frontend/images/child_4.jpg') }}" alt="" /></a>
-                                <a href="{{ url('frontend/images/child_5.jpg') }} ">
-                                    <img src="{{ url('frontend/images/child_5.jpg') }}" class="xzoom-gallery"
-                                        xpreview="{{ url('frontend/images/child_5.jpg') }}" alt="" /></a>
+                                @foreach ($item->galleries as $gallery)
+                                <a href="{{ Storage::url($gallery->image) }} ">
+                                    <img src="{{ Storage::url($gallery->image) }}" class="xzoom-gallery" width="128"
+                                        xpreview="{{ Storage::url($gallery->image) }}" alt="" /></a>
+                                @endforeach
                             </div>
                         </div>
+                        @endif
                         <h2>Tentang Wisata</h2>
                         <p>
-                            Nusa Penida is an island southeast of Indonesia's island Bali
-                            and a district of Klungkung Regency that includes the
-                            neighbouring small island of Nusa Lembongan. The Badung Strait
-                            separates the island and Bali. The interior of Nusa Penida is
-                            hilly with a maximum altitude of 524 metres. It is drier than
-                            the nearby island of Bali.
+                            {!! $item->about !!}
                         </p>
-                        <p>
-                            Nusa Penida, and neighbouring Lembongan and Ceningan islands,
-                            are a bird sanctuary. The islands communities have used
-                            traditional Balinese village regulations to create the
-                            sanctuary. The idea of a sanctuary came from the Friends of
-                            the National Parks Foundation (FNPF).
                         </p>
                         <div class="features row">
                             <div class="col-md-4">
                                 <img src="{{ url('frontend/images/ic_event.png') }}" alt="" class="featured-img" />
                                 <div class="description">
                                     <h3>Featured Event</h3>
-                                    <p>Tari Kecak</p>
+                                    <p>{{ $item->featured_event }}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 border-left">
                                 <img src="{{ url('frontend/images/ic_language.png') }}" alt="" class="featured-img" />
                                 <div class="description">
                                     <h3>Language</h3>
-                                    <p>Bahasa Indonesia</p>
+                                    <p>{{ $item->language }}</p>
                                 </div>
                             </div>
                             <div class="col-md-4 border-left">
                                 <img src="{{ url('frontend/images/ic_foods.png') }}" alt="" class="featured-img" />
                                 <div class="description">
                                     <h3>Foods</h3>
-                                    <p>Local Foods</p>
+                                    <p>{{ $item->food }}</p>
                                 </div>
                             </div>
                         </div>
@@ -109,33 +91,44 @@ Detail Travel
                             <tr>
                                 <th width="50%">Featured Event</th>
                                 <td width="50%" class="text-right">
-                                    30 Mar, 2020
+                                    {{ \Carbon\Carbon::create($item->date_of_dapature)->format('F n, Y') }}
                                 </td>
                             </tr>
                             <tr>
                                 <th width="50%">Duration</th>
                                 <td width="50%" class="text-right">
-                                    4D 3N
+                                    {{ $item->duration }}
                                 </td>
                             </tr>
                             <tr>
                                 <th width="50%">Type</th>
                                 <td width="50%" class="text-right">
-                                    Open Trip
+                                    {{ $item->type }}
                                 </td>
                             </tr>
                             <tr>
                                 <th width="50%">Price</th>
                                 <td width="50%" class="text-right">
-                                    $80,00 / Person
+                                    ${{ $item->price }},00 / Person
                                 </td>
                             </tr>
                         </table>
                     </div>
                     <div class="join-container">
-                        <a href="{{ url('checkout') }}" class="btn btn-block btn-join-now mt-3 py-2">
-                            Join Now
+                        @auth
+                        <form action="{{ route('checkout_process', $item->id) }}" method="POST">
+                            @csrf
+                            <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
+                                Join Now
+                            </button>
+                        </form>
+                        @endauth
+
+                        @guest
+                        <a href="{{ url('login') }}" class="btn btn-block btn-join-now mt-3 py-2">
+                            Login or Register to Join
                         </a>
+                        @endguest
                     </div>
                 </div>
             </div>
@@ -152,7 +145,7 @@ Detail Travel
 
 @push('addon-script')
 {{-- Script xZoom for javascript --}}
-<script src="{{ url('frontend/libraries/xZoom/xzoom.min.js') }}"></script>
+<script src="{{ url('frontend/libraries/xZoom/xzoom.js') }}"></script>
 
 {{-- Script Jquery for Javascript --}}
 <script>
