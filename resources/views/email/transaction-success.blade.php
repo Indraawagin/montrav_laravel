@@ -120,7 +120,8 @@
                                                 <tbody>
                                                     <tr>
                                                         <td style="width:150px;">
-                                                            <img alt="" height="auto" src="images/logo@2x.png"
+                                                            <img alt="" height="auto"
+                                                                src="{{ url('frontend/images/ic_logo.png') }}"
                                                                 style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
                                                                 width="150" />
                                                         </td>
@@ -234,7 +235,8 @@
                                                 <tbody>
                                                     <tr>
                                                         <td style="width:500px;">
-                                                            <img alt="" height="auto" src="images/nusaPenida@2x.png"
+                                                            <img alt="" height="auto"
+                                                                src="{{ Storage::url($data->travel_package->galleries[1]->image) }}"
                                                                 style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
                                                                 width="500" />
                                                         </td>
@@ -298,9 +300,10 @@
                                                             style="font-size:0px;padding:10px 25px;padding-right:50px;padding-left:50px;word-break:break-word;">
                                                             <div
                                                                 style="font-family:Assistant, Helvetica, sans-serif;font-size:18px;line-height:21px;text-align:left;color:#071C4D;">
-                                                                Hi, User <br /><br /> Your digital ticket has been
+                                                                Hi, {{ $data->user->name }} <br /><br /> Your digital
+                                                                ticket has been
                                                                 printed successfully. <br /> Booking <strong>ID
-                                                                    #28093848</strong></div>
+                                                                    #{{ $data->id }}</strong></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -312,14 +315,14 @@
                                                                 <tr>
                                                                     <td colspan="3">Members</td>
                                                                 </tr>
+                                                                @foreach ($data->details as $detail)
                                                                 <tr>
-                                                                    <td><strong>User</strong></td>
-                                                                    <td style="text-align: right;">Nationality</td>
+                                                                    <td><strong>{{ $detail->username }}</strong>
+                                                                    </td>
+                                                                    <td style="text-align: right;">
+                                                                        {{ $detail->nationality }}</td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td><strong>User</strong></td>
-                                                                    <td style="text-align: right;">Nationality</td>
-                                                                </tr>
+                                                                @endforeach
                                                             </table>
                                                         </td>
                                                     </tr>
@@ -334,11 +337,13 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td><strong>Depature</strong></td>
-                                                                    <td style="text-align: right;">Nusa Penida</td>
+                                                                    <td style="text-align: right;">
+                                                                        {{ $data->travel_package->title }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td><strong>Date and Time</strong></td>
-                                                                    <td style="text-align: right;">Thu, 20 Juni, 2020
+                                                                    <td style="text-align: right;">
+                                                                        {{ $data->travel_package->depature_date }}
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -355,9 +360,9 @@
                                                                         role="presentation"
                                                                         style="border:none;border-radius:5px;cursor:auto;mso-padding-alt:10px 25px;background:#ff9e53;"
                                                                         valign="middle">
-                                                                        <p
+                                                                        <a href="{{ url('checkout/'.$data->id) }}"
                                                                             style="display:inline-block;background:#ff9e53;color:#ffffff;font-family:Assistant, Helvetica, sans-serif;font-size:16px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:5px;">
-                                                                            Check Detail </p>
+                                                                            Check Detail </a>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -471,7 +476,8 @@
                                                 style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
                                                 <tr>
                                                     <td style="width: 50px;">
-                                                        <img src="images/ic_bank – 4@2x.png" width="50px" alt="" />
+                                                        <img src="{{ url('frontend/images/ic_support@2x.png') }}"
+                                                            width="50px" alt="" />
                                                     </td>
                                                     <td
                                                         style="font-size: 18px; padding-left:10px; color:#071C4D; font-family: Assistant, Helvetica, sans-serif;">

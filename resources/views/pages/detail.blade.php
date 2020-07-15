@@ -32,9 +32,8 @@ Detail Travel
                         @if ($item->galleries->count())
                         <div class="gallery">
                             <div class="xzoom-container">
-                                <img src="{{ Storage::url($item->galleries->first()->image) }}" alt="" class="xzoom"
-                                    id="xzoom-default"
-                                    xoriginal="{{ Storage::url($item->galleries->first()->image) }}" />
+                                <img src="{{ Storage::url($item->galleries[1]->image) }}" alt="" class="xzoom"
+                                    id="xzoom-default" xoriginal="{{ Storage::url($item->galleries[1]->image) }}" />
                             </div>
                             <div class="xzoom-thumbs">
                                 @foreach ($item->galleries as $gallery)

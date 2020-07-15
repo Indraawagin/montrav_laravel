@@ -21,13 +21,13 @@
 
     <div class="card shadow">
         <div class="card-body">
-            <form action="{{ route('travel-package.update', $item->id) }}" method="POST">
+            <form action="{{ route('transaction.update', $item->id) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="form-row">
                     <div class="form-group col-xl-6">
                         <label for="transaction_status">Status</label>
-                        <select class="form-control" name="transaction_status">
+                        <select class="form-control" name="transaction_status" required>
                             <option value="{{ $item->transaction_status }}">
                                 Current Status: ({{ $item->transaction_status }})</option>
                             <option value="IN_CART">In Cart</option>
