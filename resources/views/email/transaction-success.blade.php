@@ -236,7 +236,7 @@
                                                     <tr>
                                                         <td style="width:500px;">
                                                             <img alt="" height="auto"
-                                                                src="{{ Storage::url($data->travel_package->galleries[1]->image) }}"
+                                                                src="{{ url('/storage/'.$data->travel_package->galleries[1]->image) }}"
                                                                 style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
                                                                 width="500" />
                                                         </td>
