@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Mail;
-use App\Mail\TransactionSuccess;
+// use App\Mail\TransactionSuccess;
 use App\Transaction;
 use App\TransactionDetail;
 use App\TravelPackage;
@@ -11,8 +11,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use Midtrans\Config;
-use Midtrans\Snap;
+// use Midtrans\Config;
+// use Midtrans\Snap;
 
 class CheckoutController extends Controller
 {
@@ -119,7 +119,7 @@ class CheckoutController extends Controller
         //     'enabled_payments' => ['gopay'],
         //     'vtweb' => []
         // ];
-        
+
         // try {
         //     // Take the midtrans payment page
         //     $paymentUrl = Snap::createTransaction($midtrans_params)->redirect_url;
@@ -132,9 +132,9 @@ class CheckoutController extends Controller
 
 
         // Send Email to user for e-ticket
-        Mail::to($transaction->user)->send(
-            new TransactionSuccess($transaction)
-        );
+        // Mail::to($transaction->user)->send(
+        //     new TransactionSuccess($transaction)
+        // );
         return view('pages.success');
     }
 }
